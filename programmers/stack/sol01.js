@@ -47,3 +47,19 @@ var queue = [];
 queue.push(2);         // queue is now [2]
 queue.push(5);         // queue is now [2, 5]
 var i = queue.shift(); // queue is now [5]
+
+
+// 다른 사람 풀이! 간단하다.
+function solution2(heights){
+    var answer = [];
+    heights.map((h, idx) => {
+        while(idx){
+            idx--;
+            if(heights[idx] > h){
+                return idx + 1;
+            }
+        }
+        return 0;
+    })
+    return answer;
+}
