@@ -19,12 +19,14 @@ function solution(heights) {
         n--;
     }
 
-    // 왜 다음과 같이 안되는지 모르겠다.
-    // for (let i = 0; i < temp.length; i++) {
-    //     answer[i] = temp.pop();
-    // }
+    // for 문을 이용해서 배열을 뒤집으려면, 
+    // 배열의 길이는 따로 저장해두어야한다.
+    var m = temp.length;
+    for (let i = 0; i < m ; i++) {
+        answer[i] = temp.pop();
+    }
 
-    answer = temp.reverse();
+    // answer = temp.reverse();
     return answer;
 }
 
