@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -8,16 +9,16 @@ import java.io.InputStreamReader;
  */
 public class study06 {
 
-    public static void main(String[] args) {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(final String[] args) throws IOException {
+        final BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.valueOf(bf.readLine());
         while(t-- > 0){
-            String[] line = bf.readLine().split(" ");
-            int m = Integer.valueOf(line[0]);
-            int n = Integer.valueOf(line[1]);
+            final String[] line = bf.readLine().split(" ");
+            final int m = Integer.valueOf(line[0]);
+            final int n = Integer.valueOf(line[1]);
             // 나머지 연산을 사용하기 위해서 x, y에서 1을 뺀다
-            int x = Integer.valueOf(line[2])-1;
-            int y = Integer.valueOf(line[3])-1;
+            final int x = Integer.valueOf(line[2])-1;
+            final int y = Integer.valueOf(line[3])-1;
             boolean ok = false;
             // +m만큼씩 더하면 x는 고정 가능.
             for (int k = x; k < n*m; k += m) {
