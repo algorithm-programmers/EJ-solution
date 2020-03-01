@@ -58,15 +58,15 @@ public class study05 {
                     if(answer < temp) answer = temp;
                 }
                 if (i+2 < n && j+1 < m) {
-                    int temp = a[i][j] + a[i+1][j] + a[i+2][j] + a[i+2][j+1];
+                    int temp = arr[i][j] + arr[i+1][j] + arr[i+2][j] + arr[i+2][j+1];
                     if (answer < temp) answer = temp;
                 }
                 if (i+1 < n && j+2 < m) {
-                    int temp = a[i][j] + a[i][j+1] + a[i][j+2] + a[i+1][j];
+                    int temp = arr[i][j] + arr[i][j+1] + arr[i][j+2] + arr[i+1][j];
                     if (answer < temp) answer = temp;
                 }
                 if (i+2 < n && j+1 < m) {
-                    int temp = a[i][j] + a[i][j+1] + a[i+1][j+1] + a[i+2][j+1];
+                    int temp = arr[i][j] + arr[i][j+1] + arr[i+1][j+1] + arr[i+2][j+1];
                     if (answer < temp) answer = temp;
                 }
                 // 2X2
