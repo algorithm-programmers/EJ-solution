@@ -4,7 +4,7 @@ import java.util.Scanner;
  * study02 수 이어 쓰기 1
  * https://www.acmicpc.net/problem/1748
  */
-public class study02 {
+public class study07 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
