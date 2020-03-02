@@ -4,33 +4,36 @@ import java.util.Scanner;
  * study01 순열 - 다음 순열
  * https://www.acmicpc.net/problem/10972
  * 순열 규칙 : 사전순! 가장 앞선 순열은 오름차순, 가장 마지막 순열은 내림차순
+ * 
+ * 1. a = [7, 2, 3, 6, 5, 4, 1]; a[i-1] < a[i] 를 만족하는 가장 큰 수 i
+ *                 <  >  >  > 이므로 723으로 시작하는 마지막 순열을 찾아야한다.
+ * 2. [6,5,4,1]에서 a[2]=3 보다 큰, 마지막(가장 뒤에 있는) 숫자를 찾는다.
+ * 3. a[i], a[i-1]의 자리를 바꾼다. => 724...
+ * 4. 724,6531 에서 뒷 부분의 순열을 뒤집는다. 724,1356
+ * 
  */
 public class study01 {
     public static boolean next_permutation(int[] arr){
-        int i = arr.length - 1; // 3, arr : 1543
-        while (i > 0 && arr[i-1] >= arr[i]) {   
-            // i = 3, arr[i] = 3, arr[i-1] = 4
-            // i = 2, arr[i] = 4, arr[i-1] = 5
+        int i = arr.length - 1;
+        // 1.
+        while (i > 0 && arr[i-1] >= arr[i]) {
             i -= 1;
         }
 
-        if(i <= 0) return true; // 마지막 순열
+        if(i <= 0) return false; // 마지막 순열
         
-        int j = arr.length - 1; // 3
+        // 2.
+        int j = arr.length - 1;
         while (arr[j] <= arr[i-1]) {
-            // i = 2, j = 3, arr[j] = 3, arr[i-1] = 5
-            // i = 2, j = 2, arr[j] = 4, arr[i-1] = 5
-            // i = 2, j = 1, arr[j] = 5, arr[i-1] = 5
-            // i = 2, j = 0, arr[j] = 1, arr[i-1] = 5
             j -= 1;
         }
 
-        // i = 2, j = 0
-        // arr[i-1] = 5, arr[j] = 1
+        // 3.
         int temp = arr[i-1];
         arr[i-1] = arr[j];
         arr[j] = temp;
 
+        // 4.
         j = arr.length - 1;
         while (i < j) {
             temp = arr[i];
