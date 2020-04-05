@@ -10,12 +10,12 @@ function solution(numbers) {
   let tmpArr = new Set();
   combi(numberArr, "");
 
-  function combi(arr, s) {
-    if (s.length > 0) {
-      s = Number(s);
-      if (!tmpArr.has(s)) {
-        tmpArr.add(s);
-        if (isPrime(s)) {
+  function combi(arr, str) {
+    if (str.length > 0) {
+      str = Number(str);
+      if (!tmpArr.has(str)) {
+        tmpArr.add(str);
+        if (isPrime(str)) {
           answer++;
         }
       }
@@ -23,9 +23,9 @@ function solution(numbers) {
 
     if (arr.length > 0) {
       for (let i = 0; i < arr.length; i++) {
-        let t = arr.slice(0);
-        t.splice(i, 1);
-        combi(t, s + arr[i]);
+        let copy = arr.slice(0);   // 복사
+        copy.splice(i, 1);
+        combi(copy, str + arr[i]);
       }
     }
   }

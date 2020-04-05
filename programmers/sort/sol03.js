@@ -14,7 +14,7 @@ function solution(citations) {
         // 현재 citat 의 앞에 있는 요소들은 이미 인용횟수가 idx 보다 크다.
         // 또한 나머지 요소들 모두 idx 보다 작다.
         if(citat > idx){
-            answer++;
+            answer = idx + 1;
         }
     });
 
