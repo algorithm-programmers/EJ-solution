@@ -7,19 +7,16 @@
 function solution(left, right) {
     let answer = 0;
     
-    while (left.length > 0 || right.length > 0) {
+    while (right.length > 0) {
         const leftCard = left[0];
         const rightCard = right[0];
-        let score = 0;
         if(leftCard > rightCard){
-            score = right.shift();
+            const score = right.shift();
+            answer += score;
         }else if(leftCard < rightCard){
             left.shift();
         }
-        answer += score;
 
-        console.log(left, right);
-        
     }
 
     return answer;
