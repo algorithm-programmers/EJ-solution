@@ -8,8 +8,24 @@
 function solution(numbers, target) {
     let answer = 0;
 
+    // 초기값은 인덱스 0, 합계 0.
+    getTarget(0, 0);
     
+    function getTarget(index, sum){
+        if(index === numbers.length){
+            if(sum === target){
+                answer++;
+            }
+            return;
+        }
 
+        // 각각 누적할 숫자 부호가 다를 경우 
+        getTarget(index + 1, sum + numbers[index]);
+        getTarget(index + 1, sum - numbers[index]);
+    }
+
+    console.log(answer);
+    
     return answer;
 }
 
