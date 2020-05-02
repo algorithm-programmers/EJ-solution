@@ -8,9 +8,26 @@
 function solution(begin, target, words) {
     let answer = 0;
 
-    let check = new Array(words.length).fill(false);
+    if(words.indexOf(target) === -1){
+        return 0;
+    }
+
+    const length = words.length;
+    
+    let checked = new Array(length).fill(false);
+
+    for (let i = 0; i < length; i++) {
+        const beginLetter = begin[i], targetLetter = target[i];
+        if(beginLetter !== targetLetter){
+            // const result = words.find(word => );
+            // console.log(beginLetter, targetLetter, result);
+            
+        }
+    }
+
+    // words.filter()
 
     return answer;
 }
 
-solution("hit", "cog", [hot, dot, dog, lot, log, cog]);     // 4
+solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]);     // 4
