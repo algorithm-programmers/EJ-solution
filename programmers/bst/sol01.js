@@ -20,14 +20,13 @@ function solution(budgets, M) {
         }else{
             left = mid + 1;
         }
-
-        console.log(left, right);
-        
     }
 
     return Math.floor(right);
 }
 
-solution([120, 110, 140, 150], 485);
+solution([120, 110, 140, 150], 485);    // 127
+// solution([9, 8, 5, 6, 7], 5);
+// solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 56);   // 55
 
 // 230 + 290 = 520
