@@ -1,0 +1,23 @@
+{
+  "name": "js-study",
+  "version": "1.0.0",
+  "description": "javascript study",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algorithm-programmers/EJ-solution.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/algorithm-programmers/EJ-solution/issues"
+  },
+  "homepage": "https://github.com/algorithm-programmers/EJ-solution#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
