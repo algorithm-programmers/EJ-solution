@@ -5,28 +5,23 @@
  * @param {number} n 자연수
  */
 function solution(n) {
-    let answer = '';
-    let numArr = new Array(n).fill(0);
-    const elements = [1, 2, 4];
     // 1 2 4, 11 12 14, 21 22 24, 41 42 44 ...
     // 2^0 2^1 2^2 
-    for (let i = 1; i <= n; i++) {
-        let remainer = i % 3;
-        let quotient = parseInt(i / 3);
-        
-        if(remainer === 0){
-            remainer = 4;
-            quotient -= 1;
-        }
-        
-        console.log(remainer, quotient);
+    
+    let answer = '';
+    while(n > 0){
+        let remainer = n % 3;
+        n = parseInt(n / 3);
 
-        // numArr[i-1] = quotient.toString() + remainer.toString();
-        numArr[i-1] = remainer.toString();
+        if(remainer === 0){
+            n -= 1;
+            remainer = 4;
+        }
+
+        answer = remainer + answer;
     }
     
-    answer = numArr[n-1]+"";
-    console.log(numArr, answer);
+    console.log(answer);
 
     return answer;
 }
@@ -35,8 +30,8 @@ function solution(n) {
 // solution(2);    //2
 // solution(3);    //4
 // solution(4);    //11
-// solution(11);   // 42
-solution(13);   // 111
+solution(11);   // 42
+// solution(13);   // 111
 
 
 
@@ -64,3 +59,6 @@ solution(13);   // 111
  * 122
  * 124
  */
+
+ 
+ // index 1부터 모든 경우의 수 구하려고 했으나 실패
