@@ -12,7 +12,7 @@ function solution(n, works) {
     const length = works.length - 1;
 
     const sum = works.reduce((prev, curr) => prev + curr, 0);
-    if (n > sum) {
+    if (n >= sum) {
         return answer;
     }
 
