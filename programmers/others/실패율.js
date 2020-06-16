@@ -6,31 +6,17 @@
  * @param {number[]} stages 스테이지 번호가 담긴 배열
  */
 function solution(N, stages) {
-    const totalUsers = stages.length;
-
-    // {스테이지 번호 : 멈춰있는 사용자 수, ...}
-    let userLocation = {};
-    for (let i = 1; i <= N; i++) {
-        const count = stages.filter(stage => stage === i).length;
-        userLocation[i] = count;
-    }
-    console.log(userLocation);
-
     // [{스테이지 번호: 실패율 },...]
     let failureArr = [];
     for (let i = 1; i <= N; i++) {
-        let stagePlayedCount = 0;
-        for (let j = 1; j < i; j++) {
-            stagePlayedCount += userLocation[j] ? userLocation[j] : 0;
+        const succeededPlayers = stages.filter(stage => stage === i).length;
+        
+        let rate = 0;
+        if(succeededPlayers !== 0){
+            const stagePlayedCount = stages.filter(stage => stage >= i).length;
+            rate = succeededPlayers / stagePlayedCount;
         }
 
-        let rate = 0;
-        const count = userLocation[i];
-        if (count) {
-            rate = count / (totalUsers - stagePlayedCount);
-        } else {
-            rate = 0;
-        }
         failureArr.push({ index: i, failureRate: rate });
     }
 
@@ -48,9 +34,17 @@ function solution(N, stages) {
     }, []);
 
     console.log(answer);
+
     return answer;
 }
 
-// solution(5, [2, 1, 2, 6, 2, 4, 3, 3]);
-solution(4, [4, 4, 4, 4, 4]);
-// solution()
+solution(5, [2, 1, 2, 6, 2, 4, 3, 3]);
+// solution(4, [4, 4, 4, 4, 4]);
+// solution(4, [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4])
+
+/**
+ * 리뷰
+ * 
+ * 시간 초과도 줄이고 불필요한 코드도 간단하게 수정하였다. 
+ * 처음에 불필요하게 reduce()를 많이 활용하려고 했던 것 같다.
+ */
