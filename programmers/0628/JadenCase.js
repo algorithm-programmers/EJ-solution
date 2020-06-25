@@ -7,26 +7,18 @@
 function solution(string) {
     let answer = "";
 
-    if(48 <= string.charCodeAt(0) && string.charCodeAt(0) <= 57){
-        // 숫자일 경우
-        answer += string[0];
-    }else{
-        // 문자일 경우
-        answer += string[0].toUpperCase();
-    }
-
     let isUpper = false;
-    for (let i = 1; i < string.length; i++) {
+    for (let i = 0; i < string.length; i++) {
         const element = string[i];
         const charCode = string.charCodeAt(i);
 
-        if(isUpper){
+        if(isUpper || i === 0){
             answer += element.toUpperCase();
         }else{
             answer += element.toLowerCase();
         }
 
-        // 빈 칸일 경우
+        // 빈 칸 체크
         if(charCode === 32){
             isUpper = true;
         }else{
