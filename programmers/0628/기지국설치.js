@@ -6,46 +6,23 @@
  * @param {number} w 전파의 도달 거리
  */
 function solution(n, stations, w) {
-    const INSTALLED = true, UNINSTALLED = false;
-    let apartArr = new Array(n).fill(UNINSTALLED);
-
-    function installStations(stationLoc) {
-        let startIdx = stationLoc - w;
-        startIdx = startIdx < 0 ? 0 : startIdx;
-        let endIdx = stationLoc + w + 1;
-        endIdx = endIdx > n ? n : endIdx;
-        
-        console.log(stationLoc, startIdx, endIdx);
-
-        for (let i = startIdx - 1; i < endIdx; i++) {
-            apartArr[i] = INSTALLED;
-        }
-    }
-
+    let answer = 0;
+    let startIdx = 0;
     stations.map(station => {
-        installStations(station);
+        const endIdx = station - w - 1;
+        const addingStation = Math.ceil((endIdx - startIdx) / ((2 * w) + 1));
+        answer += addingStation;
+        startIdx = station + w;
     });
 
-    // console.log(apartArr, apartArr.length);
+    answer += Math.ceil((n - startIdx) / ((2 * w) + 1));
 
-    let addingStation = 0;
-
-    while (apartArr.includes(UNINSTALLED)) {
-        for (let j = 0; j < n; j++) {
-            const apartStatus = apartArr[j];
-            if (!apartStatus) {
-                console.log(j, apartArr);
-                
-                installStations(j);
-                addingStation += 1;
-            }
-        }
-    }
-
-    // console.log(apartArr, apartArr.length, addingStation);
-
-    return addingStation;
+    return answer;
 }
 
-// solution(11, [4, 11], 1);   // 3
-solution(16, [9], 2);       // 3
+solution(11, [4, 11], 1);   // 3
+// solution(16, [9], 2);       // 3
+
+/**
+ * 기지국이 안 닿는 아파트의 길이 / (2 * w) + 1 = 필요한 기지국의 개수가 나온다.
+ */
