@@ -9,32 +9,23 @@
 function solution(n, money) {
     money = money.sort((a, b) => a - b);
 
-    const length = money.length;
-
-    // i 개의 화폐를 가지고 j 금액을 만들 수 있는 방법의 수
-    let dp = new Array(length).fill(0).map(el => new Array(n).fill(1));
-
+    // i 금액을 만들 수 있는 방법의 수
+    let dp = new Array(n + 1).fill(0);
+    // 0원 : 1가지 방법
+    dp[0] = 1;
+    
     const MOD = 1000000007;
 
-    for (let i = 1; i < length; i++) {
-        const lastAddedMoney = money[i];
-
-        for (let j = 1; j < n; j++) {
-            const compareMoney = j + 1;
-
-            if (compareMoney === lastAddedMoney) {
-                dp[i][j] = (dp[i - 1][j] + 1) % MOD;
-            } else if (compareMoney < lastAddedMoney) {
-                dp[i][j] = dp[i - 1][j] % MOD;
-            } else if (compareMoney > lastAddedMoney) {
-                dp[i][j] = (dp[i - 1][j] + dp[i][j - i - 1]) % MOD;
-            }
+    money.map(m => {
+        dp[m] += 1;
+        for (let i = m + 1; i <= n; ++i) {
+            dp[i] += dp[i - m] % MOD;
         }
-    }
+    });
 
-    console.log(dp, dp[length - 1][n - 1]);
+    console.log(dp, dp[n]);
 
-    return dp[length - 1][n - 1];
+    return dp[n];
 }
 
 solution(5, [1, 2, 5]);   // 4
