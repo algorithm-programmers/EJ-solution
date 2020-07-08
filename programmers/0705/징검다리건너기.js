@@ -5,28 +5,38 @@
  * @param {number} k 한 번에 건너뛸 수 있는 디딤돌의 최대 칸 수
  */
 function solution(stones, k) {
-    const minStone = Math.min(...stones);
-    stones = stones.map(stone => stone -= minStone);
-    let numOfPeople = minStone;
-    while (true) {
-        console.log(numOfPeople, stones);
-        let prevIdx = 0;
-        for (let i = 0; i < stones.length; i++) {
-            const currStone = stones[i];
-            if (currStone === 0) {
-                continue;
-            }
-            const diffStep = i - prevIdx;
-            if (diffStep > k) {
-                console.log(i, numOfPeople);
-                return numOfPeople;
-            }
+    let min = Math.min(...stones);
+    let max = Math.max(...stones);
 
-            --stones[i];
-            prevIdx = i;
+    while (min <= max) {
+        let mid = Math.round((min + max) / 2);
+        if (checkStone(stones, mid, k)) {
+            min = mid + 1;
+        } else {
+            max = mid - 1;
         }
-        numOfPeople++;
     }
+    console.log(min);
+    
+    return min;
+}
+
+function checkStone(stones, mid, k) {
+    let cnt = 0;
+    for (let i = 0; i < stones.length; i++) {
+        const currStone = stones[i];
+        if (currStone - mid <= 0) {
+            // 연속으로 0 이하가 나오는 경우를 카운트한다.
+            cnt++;
+        } else {
+            cnt = 0;
+        }
+
+        if (cnt >= k) {
+            return false;
+        }
+    }
+    return true;
 }
 
 solution([2, 4, 5, 3, 2, 1, 4, 2, 5, 1], 3); // 3
