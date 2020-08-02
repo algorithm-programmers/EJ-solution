@@ -28,25 +28,23 @@ rl.on('line', (line) => {
  * @param {number[][]} peopleList n명의 듣도 못한 사람 명단 + m명의 보도 못한 사람 명단
  */
 function solution(n, m, peopleList) {
-    const notListenedList = peopleList.slice(0, n);
-    const notSeenList = peopleList.slice(n);
+    const notListenedList = new Set(peopleList.slice(0, n));
+    const notSeenList = new Set(peopleList.slice(n));
 
-    // console.log(notListenedList);
-    // console.log(notSeenList);
-    // console.log("========");
-
-    notListenedList.sort();
-    notSeenList.sort();
-
-    const notListenedAndSeenList = notListenedList.filter(el => {
-        return notSeenList.indexOf(el) > -1;
-    });
+    let notListenedAndSeenList = [];
+    for (const el of notListenedList) {
+        if(notSeenList.has(el)){
+            notListenedAndSeenList.push(el)
+        }
+    }
+    // const notListenedAndSeenList = notListenedList.filter(el => {
+    //     return notSeenList.includes(el);
+    // });
 
     notListenedAndSeenList.sort();
 
     console.log(notListenedAndSeenList.length);
-    for (let i = 0; i < notListenedAndSeenList.length; i++) {
-        const element = notListenedAndSeenList[i];
-        console.log(element);
+    for (const el of notListenedAndSeenList) {
+        console.log(el);
     }
 }
