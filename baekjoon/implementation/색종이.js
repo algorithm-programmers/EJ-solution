@@ -16,13 +16,6 @@ rl.on('line', (line) => {
     process.exit();
 });
 
-// var fs = require('fs');
-// var lines = fs.readFileSync('/dev/stdin').toString().split("\n");
-// lines.shift();
-// var data = lines.split(" ").map(line => parseInt(line));
-// data.pop();
-// solution(data);
-
 /**
  * 색종이
  * 가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지
