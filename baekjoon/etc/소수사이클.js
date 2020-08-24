@@ -1,3 +1,4 @@
+// 시간 초과
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -21,7 +22,7 @@ function solution(N, K, A) {
     let list = new Array(N).fill().map((el, idx) => idx + 1);
     const listLen = list.length - 1;
 
-    getPrimeNum(N);
+    getPrimeNum(K);
 
     for (let i = 0; i < K; i++) {
         let startIdx = 0;
@@ -33,16 +34,16 @@ function solution(N, K, A) {
             }
 
             startIdx++;
-            if(startIdx > listLen){
+            if (startIdx > listLen) {
                 startIdx = 0;
             }
         }
     }
 
-    const aIdx = list.findIndex(val => val === A);
+    const aIdx = list.indexOf(A);
     const right = aIdx === 0 ? listLen : aIdx - 1;
     const left = aIdx === listLen ? 0 : aIdx + 1;
-    
+
     console.log(list[left], list[right]);
 }
 
@@ -53,24 +54,21 @@ function swapList(list, indexA, indexB) {
 }
 
 function getPrimeNum(n) {
-    let isPrimeNum = new Array(5000000).fill(true);
-    isPrimeNum[0] = isPrimeNum[1] = false;
-    for (let i = 2; i < 5000000; i++) {
-        if (isPrimeNum[i]) {
-            for (let j = i * i; j <= 5000000; j += i) {
-                isPrimeNum[j] = false;
-            }
+    let idx = 2;
+    while (primeNum.length < n) {
+        const bool = isPrime(idx);
+        if (bool) {
+            primeNum.push(idx);
+        }
+        idx++
+    }
+}
+
+function isPrime(num) {
+    for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+        if (num % i === 0) {
+            return false;
         }
     }
-
-    for (let i = 0; i < isPrimeNum.length; i++) {
-        const element = isPrimeNum[i];
-        if (element) {
-            primeNum.push(i);
-        }
-
-        if (i === n) {
-            break;
-        }
-    }
+    return num > 1;
 }
