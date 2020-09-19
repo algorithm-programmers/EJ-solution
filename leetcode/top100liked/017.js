@@ -6,7 +6,7 @@ var letterCombinations = function (digits) {
     if(digits.length === 0 || !digits){
         return [];
     }
-    
+
     const map = {
 		"2": ["a", "b", "c"],
 		"3": ["d", "e", "f"],
@@ -25,6 +25,9 @@ var letterCombinations = function (digits) {
         const element = digits[i];
         psbLetters.push(map[element])
     }
+
+    // 한 줄로 문자열 구하기
+    // psbLetters = digits.split("").map(digit => map[digit]);
 
     // 조합 구하기
     const answer = psbLetters.reduce((acc, psbLetter) => {
